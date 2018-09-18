@@ -56,3 +56,49 @@ starttime =time.time()
 log_count = 0
 log =""
 logA =""
+
+
+while True:
+
+  # Read the light sensor data
+  light_level = ReadChannel(light_channel)
+  light_volts = ConvertVolts(light_level,2)
+  light       = ConvertLight(light_volts)
+
+  # Read the temperature sensor data
+  temp_level = ReadChannel(temp_channel)
+  temp_volts = ConvertVolts(temp_level,2)
+  temp       = ConvertTemp(temp_volts)
+  
+  # Read voltage on pot
+  pot_level =ReadChannel(pot_channel)
+  pot_volts = ConvertVolts(pot_level,2)
+  #print(pot_volts)
+  
+  
+  logA = timeFormat(time.time())+" "+timeFormat(time.time()-starttime)+" "+"{}V {}C {}%".format(pot_volts,temp,light)
+  
+  if(monitor ==1):
+      print("Time     Timer    pot   Temp  Light")
+      print(logA)
+      
+  elif(monitor == 0 and log_count<5):
+      log = log+"\n"+logA
+      log_count= log_count+1
+  
+  # Print out results
+  #print( "--------------------------------------------"  )
+  #print("Light : {} ({}%)".format(light_level,light_percent))  
+  #print("Temp  : {} ({}V) {} deg C".format(temp_level,temp_volts,temp))
+  #print(pot_volts)
+  #print(timerT)
+  #timerT = timmer(timerT,delay)
+  #print(timerT)
+  #delay = delay_setter(delay)
+  #print(delay)
+  #print(datetime.datetime.now().strftime('%H:%M:%S'))
+  
+
+  # Wait before repeating loop
+  time.sleep(delay)
+
