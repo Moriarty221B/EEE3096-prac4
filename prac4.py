@@ -46,3 +46,13 @@ GPIO.add_event_detect(reset, GPIO.RISING, callback=resetcallback,bouncetime=200)
 GPIO.add_event_detect(frequency, GPIO.RISING, callback=freqcallback,bouncetime=200)
 GPIO.add_event_detect(stop, GPIO.RISING, callback=stopcallback,bouncetime=200)
 GPIO.add_event_detect(display, GPIO.RISING, callback=displaycallback,bouncetime=200)
+
+
+#initializing variables
+
+delay = 1
+monitor = 1
+starttime =time.time()
+log_count = 0
+log =""
+logA =""
